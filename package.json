@@ -1,0 +1,36 @@
+{
+  "name": "solo_project",
+  "version": "1.0.0",
+  "description": "My first full stack project",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server/server.js",
+    "build": "webpack",
+    "dev": "NODE_ENV=production node server/server.js | NODE_ENV=development webpack-dev-server --open"
+  },
+  "author": "Parker Allen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^4.5.7",
+    "react": "^16.8.3",
+    "react-dom": "^16.3.1",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "isomorphic-fetch": "^2.2.1",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
+    "sass-loader": "^7.1.0",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
