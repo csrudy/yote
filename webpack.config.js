@@ -42,7 +42,7 @@ module.exports = {
 	devServer: {
 		publicPath: '/build',
 		proxy: {
-			'/api/leaders': 'http://localhost:3000'
+			'/': 'http://localhost:3000'
 		},
 		contentBase: './',
 		hot: true,

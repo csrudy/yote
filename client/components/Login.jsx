@@ -6,13 +6,12 @@ const Login = (props) => {
         console.log(props.textValue)
         fetch('http://localhost:3000/', {
             method: 'POST',
-            mode: 'no-cors',
             body: JSON.stringify(obj),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-            .then(response => console.log('success', JSON.stringify(response)))
+            .then(response => {console.log('success', JSON.stringify(response))})
             .catch(err => console.log(err))
     }
     return (

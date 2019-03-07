@@ -25,6 +25,7 @@ controller.createUser = function (req, res, next) {
             throw new Error();
         };
         const username = req.body.username;
+        console.log(username);
         db.query(`INSERT into users (username) values  ('${username}');`, (err) => {
             if (err) {
                console.log(err)
@@ -33,11 +34,10 @@ controller.createUser = function (req, res, next) {
                 if (err) {
                     console.log(err)
                 }
-                res.locals.id = results.rows[0]._id
-                console.log(res.locals.id)
-                next();
+                res.locals.userId = results.rows[0]._id
+                console.log('id of user just added to db', res.locals.userId)
+             next();
             })
-           next();
         })
         
     })

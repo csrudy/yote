@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const controller = require('../controller')
+const bodyParser = require('body-parser');
 const rp = require('request-promise');
 
 //api call to get lastest data
@@ -19,7 +21,8 @@ const requestOptions = {
   gzip: true
 };
 
-// app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use(bodyParser.json())
+app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
 app.get('/', (req, res) => {
   // rp(requestOptions).then(response => {
@@ -28,6 +31,14 @@ app.get('/', (req, res) => {
   //   console.log('API call error:', err.message);
   // });
   res.sendFile(path.join(__dirname, '../index.html'));
+})
+
+app.post('/', controller.createUser, (req, res) => {
+  res.json(res.locals.userId)
+})
+
+app.get('/data', controller.find, (req, res)=> {
+  res.send(res.locals.data)
 })
 
 app.listen(3000);
