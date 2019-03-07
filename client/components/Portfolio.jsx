@@ -15,6 +15,15 @@ export default class Portfolio extends React.Component {
         this.setState({ currentCoinIndex: index })
     }
 
+    // POST /trades
+    // fetch()
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       // rerequest wallet endpoint
+    //     }
+    //    })
+    //   .catch()
+
     componentDidMount() {
         fetch('http://localhost:3000/api/v1/historicals')
         .then(response => response.json())

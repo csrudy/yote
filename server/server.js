@@ -47,21 +47,14 @@ app.get('/:uuid?', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 })
 
+app.post('/api/v1/users', controller.createUser)
 
-app.post('/', controller.createUser)
+app.post('/api/v1/trades', controller.trade);
 
-app.post('/trades', controller.trade);
-
-// app.get('/:uuid')
-
-app.get('/data', controller.find, (req, res)=> {
-  res.send(res.locals.data)
-})
-
-app.get('/historicals', (req, res) => {
+app.get('/api/v1/historicals', (req, res) => {
   res.sendFile(path.join(__dirname, '../history.json'))
 })
 
-app.get('/wallet', controller.wallet);
+app.get('/api/v1/wallet', controller.wallet);
 
 app.listen(3000);

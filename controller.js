@@ -9,21 +9,6 @@ const client = new Client({
 
 const controller = {};
 
-controller.find = (req, res, next) => {
-    pg.connect(uri, (err, db) => {
-        if (err) {
-            throw new Error();
-        };
-        db.query('SELECT * from users;', (err, results) => {
-            if (err) {
-                throw err
-            }
-            res.locals.data = results.rows
-            next();
-        })
-    })
-}
-
 controller.createUser = function (req, res) {
     pg.connect(uri, (err, db) => {
         if (err) {
@@ -39,7 +24,8 @@ controller.createUser = function (req, res) {
                 if (err) {
                     console.log(err)
                 }
-                console.log('id of user just added to db', res.locals.userId)
+                console.log(rows[0])
+                db.end();
                 res.json(rows[0])
             })
 
@@ -58,6 +44,7 @@ controller.trade = function (req, res, next) {
         db.query(`INSERT into trades (type, coin, quantity, user_id)
      values ($1, $2, $3, $4) returning id, type, coin, quantity, user_id`, [type, coin, quantity, user_id], (err, results) => {
                 console.log('added trade to db-->', results.rows[0])
+                db.end();
                 res.status(201).end();
             })
     })
@@ -66,17 +53,34 @@ controller.trade = function (req, res, next) {
 
 controller.wallet = function (req, res, next) {
     const userId = req.headers["userid"];
-    console.log(userId)
+    if (!userId) {
+        res.status(403).end()
+    }
+    const result = {
+        trades: [],
+        totals: {},
+    };
     pg.connect(uri, (err, db) => {
         if (err) {
             throw new Error();
         };
-        db.query(`SELECT * from trades where user_id = $1;`, [userId], (err, results) => {
+        db.query(`SELECT * from trades where user_id = $1;`, [userId], (err, tradeResults) => {
             if (err) {
                 throw err;
             }
-            console.log(results.rows[0])
-            res.json(results.rows);
+            result.trades = tradeResults.rows;
+            db.query(`select coin, sum(quantity) from trades where user_id = $1 group by coin;`, [userId], (err, totalsResults) => {
+                if (err) {
+                    throw err;
+                }
+                result.totals = totalsResults.rows.reduce((obj, total) => {
+                    obj[total.coin] = total.sum
+                    return obj;
+                }, {});
+
+                db.end()
+                res.json(result);
+            });
         })
     })
 }
