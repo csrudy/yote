@@ -1,13 +1,14 @@
 import React from 'react';
-import Login from './Login.jsx';
+import SignUp from './SignUp.jsx';
+import Portfolio from "./Portfolio.jsx"
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.updateInput = this.updateInput.bind(this);
+        const userId = window.location.pathname.replace("/", "");
         this.state = {
-            input: '',
-            isLoggedin: false
+            signedUp: userId !== "",
+            userId,
         }
     }
 
@@ -15,12 +16,17 @@ class App extends React.Component {
         this.setState({ input: value })
     }
     render() {
-        return (
-            <div id="app">
-                <Login textValue={this.state.input} updateInput={this.updateInput} />
-            </div>
-    )
+        const { signedUp, userId } = this.state;
 
+        if (signedUp) {
+            return <Portfolio userId={userId}></Portfolio>
+        } else {
+            return (
+                <div id="app">
+                    <SignUp />
+                </div>
+            )
+        }
     }
 
 
