@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const app = express();
 const controller = require('../controller')
@@ -21,11 +22,24 @@ const requestOptions = {
   gzip: true
 };
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(bodyParser.json())
 app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
-app.get('/', (req, res) => {
+app.get('/:uuid?', (req, res) => {
   // rp(requestOptions).then(response => {
+  //   fs.writeFile('history.json', JSON.stringify(response), (err=> {
+  //     if (err) {
+  //       console.log(err)
+  //     } else {
+  //       console.log('file saved!')
+  //     }
+  //   }))
   //   console.log('API call response:', response);
   // }).catch((err) => {
   //   console.log('API call error:', err.message);
@@ -33,12 +47,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 })
 
-app.post('/', controller.createUser, (req, res) => {
-  res.json(res.locals.userId)
-})
+
+app.post('/', controller.createUser)
+
+app.post('/trades', controller.trade);
+
+// app.get('/:uuid')
 
 app.get('/data', controller.find, (req, res)=> {
   res.send(res.locals.data)
 })
+
+app.get('/historicals', (req, res) => {
+  res.sendFile(path.join(__dirname, '../history.json'))
+})
+
+app.get('/wallet', controller.wallet);
 
 app.listen(3000);

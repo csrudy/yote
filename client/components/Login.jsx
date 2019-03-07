@@ -11,8 +11,10 @@ const Login = (props) => {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-            .then(response => {console.log('success', JSON.stringify(response))})
+            .then(response => {
+                    console.log('success', JSON.stringify(response))})
             .catch(err => console.log(err))
+            
     }
     return (
         <div className='login'>
