@@ -49,7 +49,7 @@ app.get('/:uuid?', (req, res) => {
 
 app.post('/api/v1/users', controller.createUser)
 
-app.post('/api/v1/trades', controller.trade);
+app.post('/trades', controller.trade);
 
 app.get('/api/v1/historicals', (req, res) => {
   res.sendFile(path.join(__dirname, '../history.json'))

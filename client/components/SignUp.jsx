@@ -40,7 +40,7 @@ export default class SignUp extends React.Component {
         if (signupSuccessful) {
             return (
                 <div>
-                    <p>SAVE THIS SUPER SECRET ID: {userId}</p>
+                    <p>SAVE THIS SUPER SECRET KEY: {userId}</p>
                     <button><a href={`/${userId}`}>Go to porfolio</a></button>
                 </div>
             )

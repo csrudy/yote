@@ -2,7 +2,7 @@ import React from 'react';
 
 const CoinListRow = (props) => {
     return (
-        <div onClick={(e)=>props.onCoinClicked(props.index)}>
+        <div className="coinRow" onClick={(e)=>props.onCoinClicked(props.index)}>
             <p>{props.cmc_rank}</p>
             <p>{props.name}</p>
             <p>{props.quote.USD.price}</p>
