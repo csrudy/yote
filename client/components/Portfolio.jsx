@@ -78,9 +78,12 @@ export default class Portfolio extends React.Component {
         return <div>
             THIS IS YOUR SECRET KEY: {userId} <br />
             Current Coin: {currentCoinIndex}
+            <div className='home'>
             <Wallet walletInfo={walletInfo} data={coinData}></Wallet>
             <CurrentCoin data={coinData} hodl={this.hodl} quantity={quantity} currentCoinIndex={currentCoinIndex} updateQuantity={this.updateQuantity}></CurrentCoin>
             <CoinList key={currentCoinIndex} data={coinData} onCoinClicked={this.setCurrentCoin}></CoinList>
+            </div>
+            
         </div>;
     }
 }

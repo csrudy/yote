@@ -44,6 +44,10 @@ controller.trade = function (req, res, next) {
         db.query(`INSERT into trades (type, coin, quantity, user_id)
      values ($1, $2, $3, $4) returning id, type, coin, quantity, user_id`, [type, coin, quantity, user_id], (err, results) => {
                 console.log('added trade to db-->', results.rows[0])
+                if (err) {
+                    throw err;
+                }
+                db.end()
                 res.json({status: 200});
                 
             })
@@ -77,7 +81,7 @@ controller.wallet = function (req, res, next) {
                     obj[total.coin] = total.sum
                     return obj;
                 }, {});
-
+                db.end();
                 res.json(result);
             });
         })

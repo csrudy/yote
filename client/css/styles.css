@@ -1,3 +1,4 @@
-p {
-
+.home {
+    display: flex;
+    justify-content: space-between;
 }
