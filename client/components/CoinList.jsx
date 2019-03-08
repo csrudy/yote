@@ -13,6 +13,6 @@ export default class CoinList extends React.Component {
     render() {
         const { data, onCoinClicked } = this.props;
         const list = data.map((coinData, index) => <CoinListRow key={coinData.name} {...coinData} index={index} onCoinClicked={onCoinClicked}></CoinListRow>)
-        return <div>{list}</div>
+        return <div className="list" >{list}</div>
     }
 }

@@ -1,6 +1,11 @@
 import React from 'react';
 
 const CurrentCoin = (props) => {
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      })
     const { data, currentCoinIndex } = props;
     const { name, symbol, quote } = data[currentCoinIndex];
     const price = quote.USD.price;
@@ -10,7 +15,11 @@ const CurrentCoin = (props) => {
 
     return (
         <div>
-            <p>{name} {symbol} {price}</p>
+            <h2>{name} ({symbol})</h2>
+            <p>current price: {formatter.format(price)}</p>
+            <p> 1 hour change: {parseFloat(percent1h).toFixed(2)+'%'}</p>
+            <p>24 hour change: {parseFloat(percent24h).toFixed(2)+'%'}</p>
+            <p>7 day change: {parseFloat(percent7d).toFixed(2)+'%'}</p>
             <input type="text" placeholder="how much?" value={props.quantity} onChange={(e)=>props.updateQuantity(e.target.value)}></input>
             <button onClick={()=>props.hodl()}>HODL</button>
         </div>

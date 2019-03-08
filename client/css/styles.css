@@ -1,4 +1,45 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+
+body {
+    font-family: -apple-system,  Roboto, sans-serif;
+    background: #1a1919;
+    color: #4da54d
+}
+
+.login {
+    width: 800px;
+    margin: 0 auto;
+}
+#title {
+    display: flex;
+    margin: 0% 50% 0% 0%;
+}
 .home {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.coinRow {
+    border: 1px;
+    border-radius: 5px;
+    border-color: white;
+    background: #434450;
+    
+}
+
+button {
+    padding: .2rem 1rem;
+    border-radius: 3px;
+    background: #aaaaaa
+}
+
+.list {
+    max-height: 90vh;
+    overflow: scroll;
 }

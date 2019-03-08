@@ -76,8 +76,8 @@ export default class Portfolio extends React.Component {
         const { coinData, currentCoinIndex, quantity, walletInfo } = this.state;
         console.log(coinData, currentCoinIndex, quantity)
         return <div>
-            THIS IS YOUR SECRET KEY: {userId} <br />
-            Current Coin: {currentCoinIndex}
+            {/* THIS IS YOUR SECRET KEY: {userId} <br />
+            Current Coin: {currentCoinIndex} */}
             <div className='home'>
             <Wallet walletInfo={walletInfo} data={coinData}></Wallet>
             <CurrentCoin data={coinData} hodl={this.hodl} quantity={quantity} currentCoinIndex={currentCoinIndex} updateQuantity={this.updateQuantity}></CurrentCoin>

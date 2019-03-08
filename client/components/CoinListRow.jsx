@@ -7,8 +7,9 @@ const formatter = new Intl.NumberFormat('en-US', {
 const CoinListRow = (props) => {
     return (
         <div className="coinRow" onClick={(e)=>props.onCoinClicked(props.index)}>
-            <p> Rank by marketcap: {props.cmc_rank}</p>
-            <p>{props.name}</p>
+           
+            <h3>{props.name}</h3>
+            <p>rank: {props.cmc_rank}</p>
             <p>Current price: {formatter.format(props.quote.USD.price)}</p>
             <p>Marketcap: {formatter.format(props.quote.USD.market_cap)}</p>
             <p>24hr change {parseFloat(props.quote.USD.percent_change_24h).toFixed(2)+'%'}</p>

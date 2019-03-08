@@ -40,17 +40,22 @@ export default class SignUp extends React.Component {
         if (signupSuccessful) {
             return (
                 <div>
-                    <p>SAVE THIS SUPER SECRET KEY: {userId}</p>
+                    <p>Save this SUPER SECRET wallet id: {userId}</p>
                     <p>DO NOT SHOW THIS TO ANYONE, ESPECIALLY A ROOM FULL OF SOFTWARE ENGINEERS</p>
                     <button><a href={`/${userId}`}>Go to porfolio</a></button>
                 </div>
             )
         } else {
             return (
-                <div className='login'>
+                <div className='login'> 
+                <h2>Welcome to Yote</h2>
+                <h3>A cyrpto portfolio</h3>
                     <p>Sign up for Yote</p>
                     <input id='username' value={textValue} onChange={(e)=>this.updateInput(e.target.value)} type='text'></input>
                     <button onClick={this.signUp}>Sign Up</button>
+
+                    <p>Already have an account?</p>
+                    <p>Append your wallet id to the address bar</p>
                 </div>
             )
         }

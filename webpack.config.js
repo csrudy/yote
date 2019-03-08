@@ -23,18 +23,12 @@ module.exports = {
 				}
 			}
 		}, {
-			test: /\.scss$/,
+			test: /\.css$/,
 			exclude: /(node_modules|bower_components)/,
-			use: [{
-				loader: 'style-loader'
-			}, {
-				loader: 'css-loader',
-			}, {
-				loader: 'sass-loader',
-				options: {
-					implementation: sass
-				}
-			}]
+			use: [
+				{loader: 'style-loader'}, 
+				{loader: 'css-loader'} 
+			]
 		}],
 
 	},
