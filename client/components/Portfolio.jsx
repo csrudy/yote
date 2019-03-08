@@ -14,7 +14,7 @@ export default class Portfolio extends React.Component {
             coinData: [],
             currentCoinIndex: 0,
             quantity: '',
-            walletInfo: this.getWalletInfo() || {}
+            walletInfo: { trades: {}, totals: {}}
         };
     }
 
@@ -58,6 +58,7 @@ export default class Portfolio extends React.Component {
     }
 
     componentDidMount() {
+        this.getWalletInfo();
         fetch('http://localhost:3000/api/v1/historicals')
             .then(response => response.json())
             .then(({ data }) => this.setState({
