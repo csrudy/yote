@@ -41,7 +41,6 @@ export default class SignUp extends React.Component {
             return (
                 <div>
                     <p>Save this SUPER SECRET wallet id: {userId}</p>
-                    <p>DO NOT SHOW THIS TO ANYONE, ESPECIALLY A ROOM FULL OF SOFTWARE ENGINEERS</p>
                     <button><a href={`/${userId}`}>Go to porfolio</a></button>
                 </div>
             )
